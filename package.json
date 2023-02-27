@@ -1,0 +1,26 @@
+{
+  "name": "igme430-project1",
+  "version": "1.0.0",
+  "description": "\"Project one for RMWAD2\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/server.js",
+    "pretest": "eslint ./src --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlijahT/IGME430-Project1.git"
+  },
+  "author": "Alijah Trombley",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/AlijahT/IGME430-Project1/issues"
+  },
+  "homepage": "https://github.com/AlijahT/IGME430-Project1#readme",
+  "devDependencies": {
+    "eslint": "^8.35.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5"
+  }
+}

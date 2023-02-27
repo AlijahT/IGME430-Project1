@@ -1,0 +1,14 @@
+Create a website to log builds of springer blaster for the blaster hobby enthusiasts.
+I did not have any time to work on the prototype due to health issues, and I feel bad about not being able to do more for the prototype.
+I want to visit during office hours in order to get some more understanding on the content and actually do the project properly.
+
+Features:
+A list of most standard springers in the blaster hobby.
+Springs, barrels/ barrel materials, fps numbers, and rifling with overall accuracy
+
+Store these user created builds to be referenced back to later.
+
+Use a UI that allows for personal input or a dropdown of various other methods
+Use Bulma probably lol
+
+still need to integrate with Heroku and get my educational account from github
