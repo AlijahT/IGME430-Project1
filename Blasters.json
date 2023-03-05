@@ -35,7 +35,13 @@
                     "barrel-name":"OOD Replacement Barrel",
                     "barrel-link":"https://outofdarts.com/products/replacement-barrel-caliburn-esper-talon-claw-spamf?variant=40036707270698"
                 }
-            ]     
+            ],
+            "additional": [
+                {
+                    "additional-name":"None",
+                    "additional-link":"None"
+                }
+            ]    
         },
         {
             "blaster-name":"Nexus Pro",
@@ -90,6 +96,10 @@
                 }
             ],
             "additional": [
+                {
+                    "additional-name":"None",
+                    "additional-link":"None"
+                },
                 {
                     "additional-name":"Included Spring Spacer",
                     "additional-link":"None"
@@ -163,10 +173,18 @@
             ],
             "additional":[
                 {
+                    "additional-name":"None",
+                    "additional-link":"None"
+                },
+                {
                     "additional-name":"Bearing Pull Down Slide",
                     "additional-link":"https://outofdarts.com/products/worker-harrier-bearing-pull-down-slide?_pos=6&_sid=b3401f9a1&_ss=r"
                 }
             ]     
         }
+    ],
+
+    "builds": [
+
     ]
 }
