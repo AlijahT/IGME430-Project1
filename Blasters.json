@@ -1,0 +1,172 @@
+{
+    "blasters": [
+        {
+            "blaster-name":"Talon Claw T4",
+            "blaster-brand":"Captain Slug",
+            "blaster-link":"https://www.thingiverse.com/thing:5163389",
+            "springs" : [
+                {
+                    "spring-name":"K25",
+                    "spring-link":"https://outofdarts.com/products/cut-to-length-k25-spring-tell-me-how-long?_pos=3&_sid=bf6f33e04&_ss=r"
+                },
+                {
+                    "spring-name":"K26",
+                    "spring-link":"https://outofdarts.com/products/cut-to-length-k26-spring-tell-me-how-long?_pos=3&_psq=k26&_ss=e&_v=1.0"
+                },
+                {
+                    "spring-name":"SF25",
+                    "spring-link":"https://silverfoxindustries.shop/products/sf25?_pos=2&_sid=2cd92ea3a&_ss=r"
+                }
+            ],
+            "barrels" : [
+                {
+                    "barrel-name":"Brass Breech",
+                    "barrel-link":"None"
+                },
+                {
+                    "barrel-name":"Kuryaka",
+                    "barrel-link":"https://silverfoxindustries.shop/products/13mm-machined-aluminum-barrel-by-kuryaka?_pos=1&_sid=b8aa6d3fb&_ss=r"
+                },
+                {
+                    "barrel-name":"OOD 13MM Machined Barrel",
+                    "barrel-link":"https://outofdarts.com/products/13mm-machined-aluminum-barrel-multiple-length-options?variant=39525257773098"
+                },
+                {
+                    "barrel-name":"OOD Replacement Barrel",
+                    "barrel-link":"https://outofdarts.com/products/replacement-barrel-caliburn-esper-talon-claw-spamf?variant=40036707270698"
+                }
+            ]     
+        },
+        {
+            "blaster-name":"Nexus Pro",
+            "blaster-brand":"Dart Zone",
+            "blaster-link":"https://dartzoneblasters.com/product/adventure-force-nexus-pro-ultimate-dart-blaster/",
+            "springs" : [
+                {
+                    "spring-name":"Stock",
+                    "spring-link":"None"
+                },
+                {
+                    "spring-name":"OOD High Powered Spring",
+                    "spring-link":"https://outofdarts.com/products/ood-high-power-spring-nexus-pro-max-stryker?_pos=7&_sid=1ca727e17&_ss=r"
+                },
+                {
+                    "spring-name":"OOD Low Powered Spring",
+                    "spring-link":"https://outofdarts.com/products/ood-low-power-spring-nexus-pro-max-stryker?_pos=8&_sid=1ca727e17&_ss=r"
+                },
+                {
+                    "spring-name":"OOD Tuning Spring",
+                    "spring-link":"https://outofdarts.com/products/ood-tuning-spring-nexus-pro-max-stryker?_pos=16&_sid=1ca727e17&_ss=r"
+                },
+                {
+                    "spring-name":"Worker Nexus Pro Upgrade Spring",
+                    "spring-link":"https://outofdarts.com/products/worker-nexus-pro-upgrade-spring?_pos=13&_sid=1ca727e17&_ss=r"
+                }
+            ],
+            "barrels" : [
+                {
+                    "barrel-name":"Stock",
+                    "barrel-link":"None"
+                },
+                {
+                    "barrel-name":"Brass Breech",
+                    "barrel-link":"None"
+                },
+                {
+                    "barrel-name":"Kuryaka",
+                    "barrel-link":"https://silverfoxindustries.shop/products/13mm-machined-aluminum-barrel-by-kuryaka?_pos=1&_sid=b8aa6d3fb&_ss=r"
+                },
+                {
+                    "barrel-name":"OOD 13MM Machined Barrel",
+                    "barrel-link":"https://outofdarts.com/products/13mm-machined-aluminum-barrel-multiple-length-options?variant=39525257773098"
+                },
+                {
+                    "barrel-name":"OOD Replacement Barrel",
+                    "barrel-link":"https://outofdarts.com/products/replacement-barrel-caliburn-esper-talon-claw-spamf?variant=40036707270698"
+                },
+                {
+                    "barrel-name":"Worker Kit Barrel",
+                    "barrel-link":"https://outofdarts.com/products/worker-metal-internals-kit-for-nexus-pro-two-colors?_pos=48&_sid=d0c475110&_ss=r"
+                }
+            ],
+            "additional": [
+                {
+                    "additional-name":"Included Spring Spacer",
+                    "additional-link":"None"
+                },
+                {
+                    "additional-name":"OOD Tuning Cap 100 FPS",
+                    "additional-link":"https://outofdarts.com/products/adventure-force-nexus-pro-fps-tuning-cap-for-special-edition-nexus-3-choices?variant=40389365530666"
+                },
+                {
+                    "additional-name":"OOD Tuning Cap 130 FPS",
+                    "additional-link":"https://outofdarts.com/products/adventure-force-nexus-pro-fps-tuning-cap-for-special-edition-nexus-3-choices?variant=40389365563434"
+                },
+                {
+                    "additional-name":"OOD Tuning Cap 175 FPS",
+                    "additional-link":"https://outofdarts.com/products/adventure-force-nexus-pro-fps-tuning-cap-for-special-edition-nexus-3-choices?variant=40389365596202"
+                },
+                {
+                    "additional-name":"OOD Printed Spring Spacer",
+                    "additional-link":"https://outofdarts.com/products/adventure-force-nexus-pro-spring-spacer-20-fps?_pos=10&_sid=eafbdad3c&_ss=r"
+                },
+                {
+                    "additional-name":"Worker Metal Internals Kit",
+                    "additional-link":"https://outofdarts.com/products/worker-metal-internals-kit-for-nexus-pro-two-colors?_pos=48&_sid=d0c475110&_ss=r"
+                },
+                {
+                    "additional-name":"Worker Metal Internal Priming Kit",
+                    "additional-link":"https://outofdarts.com/products/worker-nexus-pro-metal-internals-priming-kit-multiple-colors?_pos=49&_sid=b68dabbae&_ss=r"
+                }
+            ]
+            
+        },
+        {
+            "blaster-name":"Harrier",
+            "blaster-brand":"Worker",
+            "blaster-link":"https://outofdarts.com/products/worker-harrier-blaster?_pos=1&_sid=b3401f9a1&_ss=r",
+            "springs" : [
+                {
+                    "spring-name":"310mm",
+                    "spring-link":"https://outofdarts.com/products/worker-harrier-blaster?_pos=1&_sid=b3401f9a1&_ss=r"
+                },
+                {
+                    "spring-name":"370mm",
+                    "spring-link":"https://outofdarts.com/products/worker-harrier-blaster?_pos=1&_sid=b3401f9a1&_ss=r"
+                },
+                {
+                    "spring-name":"450mm",
+                    "spring-link":"https://outofdarts.com/products/worker-harrier-450mm-barrel?_pos=2&_sid=b3401f9a1&_ss=r"
+                },
+                {
+                    "spring-name":"550mm",
+                    "spring-link":"https://outofdarts.com/products/worker-harrier-550mm-barrel?_pos=3&_sid=b3401f9a1&_ss=r"
+                }
+            ],
+            "barrels" : [
+                {
+                    "barrel-name":"1.1 x 250",
+                    "barrel-link":"https://outofdarts.com/products/worker-harrier-blaster?_pos=1&_sid=b3401f9a1&_ss=r"
+                },
+                {
+                    "barrel-name":"1.1 x 300",
+                    "barrel-link":"https://outofdarts.com/products/worker-harrier-blaster?_pos=1&_sid=b3401f9a1&_ss=r"
+                },
+                {
+                    "barrel-name":"1.6 x 250",
+                    "barrel-link":"https://outofdarts.com/products/worker-harrier-1-6-x-250-spring?_pos=7&_sid=b3401f9a1&_ss=r"
+                },
+                {
+                    "barrel-name":"1.6 x 300",
+                    "barrel-link":"https://outofdarts.com/products/worker-harrier-1-6-x-300-spring?_pos=4&_sid=b3401f9a1&_ss=r"
+                }
+            ],
+            "additional":[
+                {
+                    "additional-name":"Bearing Pull Down Slide",
+                    "additional-link":"https://outofdarts.com/products/worker-harrier-bearing-pull-down-slide?_pos=6&_sid=b3401f9a1&_ss=r"
+                }
+            ]     
+        }
+    ]
+}
