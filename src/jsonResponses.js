@@ -22,8 +22,6 @@ const getBuild = (request, response) => {
     respondJSON(request, response, 200, responseJSON);
 };
 
-
-
 // POST request
 const addBuild = (request, response, body) => {
     // default message
