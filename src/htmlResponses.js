@@ -18,9 +18,9 @@ const getCSS = (request, response) => {
 
 const getBlaster = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'application/json' });
-  response.write(blasters)
+  response.write(blasters);
   response.end();
-}
+};
 
 module.exports = {
   getIndex,

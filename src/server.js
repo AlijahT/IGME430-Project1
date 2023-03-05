@@ -1,8 +1,8 @@
-const htmlHandler = require('./htmlResponses.js');
-const jsonHandler = require('./jsonResponses.js');
 const http = require('http');
 const query = require('querystring');
 const url = require('url');
+const jsonHandler = require('./jsonResponses.js');
+const htmlHandler = require('./htmlResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
@@ -27,26 +27,22 @@ const parseBody = (request, response, handler) => {
   });
 };
 
-const POSTHandler = (request,response,parsedURL)=>{
-  if(parsedURL.pathname === '/addBuild'){
-    parseBody(request,response,jsonHandler.addBuild);
+const POSTHandler = (request, response, parsedURL) => {
+  if (parsedURL.pathname === '/addBuild') {
+    parseBody(request, response, jsonHandler.addBuild);
   }
 };
 
 const GETHandler = (request, response, parsedURL) => {
-  if(parsedURL.pathname === '/style.css'){
+  if (parsedURL.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
-  }
-  else if(parsedURL.pathname === '/getBuild'){
+  } else if (parsedURL.pathname === '/getBuild') {
     jsonHandler.getBuild(request, response);
-  }
-  else if(parsedURL.pathname === '/notReal'){
+  } else if (parsedURL.pathname === '/notReal') {
     jsonHandler.notReal(request, response);
-  }
-  else if(parsedURL.pathname === '/blasters.json'){
+  } else if (parsedURL.pathname === '/blasters.json') {
     htmlHandler.getBlaster(request, response);
-  }
-  else{
+  } else {
     htmlHandler.getIndex(request, response);
   }
 };
@@ -54,9 +50,9 @@ const GETHandler = (request, response, parsedURL) => {
 const onRequest = (request, response) => {
   const parsedURL = url.parse(request.url);
 
-  if(request.method === 'POST'){
+  if (request.method === 'POST') {
     POSTHandler(request, response, parsedURL);
-  }else{
+  } else {
     GETHandler(request, response, parsedURL);
   }
 };

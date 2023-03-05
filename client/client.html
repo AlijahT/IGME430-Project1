@@ -1,12 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Springer Builder</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+
 </head>
+
 <body>
-    
+    <script>
+        //handles responses based on error code
+        const handleResponse = async (response, form) => {
+            const content = document.querySelector('#content');
+
+            switch (response.status) {
+                case 200:
+                    content.innerHTML = '<b>Success</b>';
+                    break;
+                case 201:
+                    content.innerHTML = `<b>Created</b>`;
+                    break;
+                case 204:
+                    content.innerHTML = `<b>Updated</b>`;
+                    break;
+                case 400:
+                    content.innerHTML = `<b>Bad Request</b>`;
+                    break;
+                case 404:
+                    content.innerHTML = `<b>Resource Not Found</b>`;
+                    break;
+                default:
+                    content.innerHTML = `Error code not implemented by client.`;
+                    break;
+            }
+
+            const method = document.querySelector('#methodSelect');
+
+            //checks if it is a get or post based on the value of the method
+            if (method.value === 'get') {
+
+                const urlField = document.querySelector('#urlField');
+
+                if (form.method === 'post') {
+
+                    response.text().then((responseText) => {
+                        if (responseText == '') {
+                            return false;
+                        }
+                        console.log(responseText);
+                        let parsedResponse = JSON.parse(responseText);
+                        console.log(parsedResponse);
+                        content.innerHTML += `<p>${parsedResponse.message}</p>`;
+
+                    });
+                }
+                else if (form.method === 'get') {
+
+                    response.text().then((responseText) => {
+                        let parsedResponse = JSON.parse(responseText);
+                        let parsedBuild = JSON.stringify(parsedResponse.builds);
+                        console.log(parsedResponse);
+
+                        if (urlField.value == "/getBuild") {
+                            content.innerHTML += `<p>${parsedBuild}</p>`;
+                        }
+                        else if (urlField.value == "/notReal") {
+                            content.innerHTML += `<p>${parsedResponse.message}</p>`;
+                        }
+                    });
+                }
+            }
+        }
+
+        const sendPOST = async (buildForm) => {
+            const nameAction = buildForm.getAttribute('action');
+            const nameMethod = buildForm.getAttribute('method');
+
+            const nameField = buildForm.querySelector('#nameField');
+            const blasterType = buildForm.querySelector('#blasterType');
+            const barrelType = buildForm.querySelector('#barrelType');
+            const springType = buildForm.querySelector('#springType');
+            const additionalType = buildForm.querySelector('#additionalType');
+            const fpsField = buildForm.querySelector('#fpsField');
+            const priceField = buildForm.querySelector('#priceField');
+
+            const formData = `name=${nameField.value}&blaster=${blasterType.value}
+            &barrel=${barrelType.value}&spring=${springType.value}
+            &additional=${additionalType.value}
+            &fps=${fpsField.value}&price=${priceField.value}`;
+
+            let response = await fetch(nameAction, {
+                method: nameMethod,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                },
+                body: formData,
+            });
+
+            handleResponse(response, buildForm);
+        };
+
+        const getPOST = async (viewForm) => {
+            const nameMethod = viewForm.getAttribute('method');
+
+            let response = await fetch(urlField.value, {
+                method: nameMethod,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Accept': 'application/json',
+                },
+            });
+
+            handleResponse(response, viewForm);
+        };
+
+        const init = () => {
+            const buildForm = document.querySelector('#buildForm');
+            const viewForm = document.querySelector('#viewForm');
+
+            const addUser = (e) => {
+                e.preventDefault();
+                sendPOST(buildForm);
+                return false;
+            }
+
+            const getUsers = (e) => {
+                e.preventDefault();
+                getPOST(viewForm);
+                return false;
+            }
+
+            buildForm.addEventListener('submit', addUser);
+            viewForm.addEventListener('submit', getUsers);
+        };
+
+        window.onload = init;
+
+    </script>
+
+    <section id="top">
+        <h3>Create a Springer Build</h3>
+        <form id="buildForm" action="/addBuild" method="post">
+            <label for="name">Your Name: </label>
+            <input id="nameField" type="text" name="name" />
+            <label for="blaster">Blaster: </label>
+            <select id='blasterType' name="blaster">
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+            </select>
+            <label for="barrel">Barrel: </label>
+            <select id='barrelType' name="barrel">
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+            </select>
+            <label for="spring">Spring: </label>
+            <select id='springType' name="spring">
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+            </select>
+            <label for="additional">Additional: </label>
+            <select id='additionalType' name="additional">
+                <option value='1'>1</option>
+                <option value='2'>2</option>
+            </select>
+            <label for="fps">FPS Average: </label>
+            <input id="fpsField" type="number" name="fps" step="1" />
+            <label for="price">Price (USD): </label>
+            <input id="priceField" type="number" name="price" />
+            <input type="submit" value="Add Blaster" />
+        </form>
+        <form id="viewForm" action="/getBuild" method="get">
+            <select id='urlField'>
+                <option value='/getBuild'>View builds</option>
+                <option value='/notReal'>/notReal</option>
+            </select>
+            <select id="methodSelect">
+                <option value="get">GET</option>
+                <option value="head">HEAD</option>
+            </select>
+            <input type="submit" value="View builds" />
+        </form>
+    </section>
+    <section id="content">
+    </section>
+
 </body>
+
 </html>
