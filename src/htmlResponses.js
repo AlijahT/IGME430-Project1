@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const index = fs.readFileSync(`${__dirname}/../client/client.html`);
 const css = fs.readFileSync(`${__dirname}/../client/style.css`);
+const blasters = fs.readFileSync(`${__dirname}/../blasters.json`);
 
 const getIndex = (request, response) => {
   response.writeHead(200, { 'Content-Type': 'text/html' });
@@ -15,8 +16,8 @@ const getCSS = (request, response) => {
   response.end();
 };
 
-const getBlaster = (request, response)=>{
-  response.writeHead(200, {'Content-Type': 'application/json'});
+const getBlaster = (request, response) => {
+  response.writeHead(200, { 'Content-Type': 'application/json' });
   response.write(blasters)
   response.end();
 }
