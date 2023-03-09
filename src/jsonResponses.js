@@ -1,7 +1,4 @@
-const fs = require('fs');
-
-const blasters = JSON.parse(fs.readFileSync(`${__dirname}/../blasters.json`));
-const builds = blasters.builds;
+const builds = {};
 
 const respondJSON = (request, response, status, object) => {
   response.writeHead(status, { 'Content-Type': 'application/json' });

@@ -12,6 +12,8 @@
 
 <body>
     <script>
+
+        let JSONobject;
         //handles responses based on error code
         const handleResponse = async (response, form) => {
             const content = document.querySelector('#content');
@@ -50,9 +52,9 @@
                         if (responseText == '') {
                             return false;
                         }
-                        console.log(responseText);
+                        //console.log(responseText);
                         let parsedResponse = JSON.parse(responseText);
-                        console.log(parsedResponse);
+                        //console.log(parsedResponse);
                         content.innerHTML += `<p>${parsedResponse.message}</p>`;
 
                     });
@@ -62,9 +64,15 @@
                     response.text().then((responseText) => {
                         let parsedResponse = JSON.parse(responseText);
                         let parsedBuild = JSON.stringify(parsedResponse.builds);
-                        console.log(parsedResponse);
+                        //console.log(parsedResponse);
 
                         if (urlField.value == "/getBuild") {
+                            parsedBuild.forEach((person)=> {
+                                content.innerHTML += `<p>${person.name}</p>`
+                                content.innerHTML += `<p>${person.blaster}</p>`
+                                content.innerHTML += `<p>${person.spring}</p>`
+                            })
+
                             content.innerHTML += `<p>${parsedBuild}</p>`;
                         }
                         else if (urlField.value == "/notReal") {
@@ -87,10 +95,7 @@
             const fpsField = buildForm.querySelector('#fpsField');
             const priceField = buildForm.querySelector('#priceField');
 
-            const formData = `name=${nameField.value}&blaster=${blasterType.value}
-            &barrel=${barrelType.value}&spring=${springType.value}
-            &additional=${additionalType.value}
-            &fps=${fpsField.value}&price=${priceField.value}`;
+            const formData = `name=${nameField.value}&blaster=${blasterType.value}&barrel=${barrelType.value}&spring=${springType.value}&additional=${additionalType.value}&fps=${fpsField.value}&price=${priceField.value}`;
 
             let response = await fetch(nameAction, {
                 method: nameMethod,
@@ -118,24 +123,126 @@
             handleResponse(response, viewForm);
         };
 
+        function htmlFormatting() {
+
+            let selected
+            let string =
+                `<label for="blaster">Blaster: </label>
+                <select id='blasterType' name="blaster" onchange="handleOnChange(this.value)">`;
+
+            for (let i = 0; i < JSONobject.blasters.length; i++) {
+                string +=
+                    `<option value="${JSONobject.blasters[i].blastername}">
+                    ${JSONobject.blasters[i].blastername}
+                    by ${JSONobject.blasters[i].blasterbrand}</option>`;
+            };
+
+            string += `</select>`;
+
+            return string;
+        }
+
+        function handleOnChange(value) {
+
+            document.querySelector
+
+            console.log("Blaster Changed!");
+
+            let index = 0;
+
+            if(value === "Talon Claw T4"){
+                index = 0;
+            }
+
+            if(value === "Nexus Pro"){
+                index = 1;
+            }
+
+            if(value === "Harrier"){
+                index = 2;
+            }
+
+            let string = `
+            <label for="barrel">Barrel: </label>
+            <select id='barrelType' name="barrel">`
+
+            for (let i = 0; i < JSONobject.blasters[index].barrels.length; i++) {
+                string +=
+                    `<option value="${JSONobject.blasters[index].barrels[i].barrelname}">
+                    ${JSONobject.blasters[index].barrels[i].barrelname}</option>`;
+            }
+
+            string += `</select> <br>`
+
+            string += `<label for="spring">Spring: </label>
+            <select id='springType' name="spring">`
+
+            for (let i = 0; i < JSONobject.blasters[index].springs.length; i++) {
+                string +=
+                    `<option value="${JSONobject.blasters[index].springs[i].springname}">
+                    ${JSONobject.blasters[index].springs[i].springname}</option>`;
+            }
+
+            string += `</select> <br>`
+
+            string += `<label for="additional">Additional: </label>
+            <select id='additionalType' name="additional">`
+
+            for (let i = 0; i < JSONobject.blasters[index].additional.length; i++) {
+                string +=
+                    `<option value="${JSONobject.blasters[index].additional[i].additionalname}">
+                    ${JSONobject.blasters[index].additional[i].additionalname}</option>`;
+            }
+
+            string += `</select> <br>
+            <label for="fps">FPS Average: </label>
+            <input id="fpsField" type="number" min = "0" name="fps" />
+            <label for="price">Price (USD): </label>
+            <input id="priceField" type="number" min = "0" name="price" />
+            <input type="submit" value="Add Blaster" />`
+
+            let form = document.querySelector("#details");
+            form.innerHTML = string;
+        }
+
+        const PopulateBlasterData = async () => {
+            const response = await fetch('/blasters.json');
+            const dropdownData = await response.json();
+
+            //console.log(dropdownData);
+
+            let JSONstring = JSON.stringify(dropdownData);
+            JSONobject = JSON.parse(JSONstring);
+
+            //console.log(JSONobject);
+
+            let form = document.querySelector("#buildForm");
+
+            form.innerHTML += htmlFormatting();
+
+            return JSONobject;
+        }
+
         const init = () => {
+            JSONobject = PopulateBlasterData();
+
             const buildForm = document.querySelector('#buildForm');
             const viewForm = document.querySelector('#viewForm');
 
-            const addUser = (e) => {
+            const addBuild = (e) => {
                 e.preventDefault();
                 sendPOST(buildForm);
                 return false;
             }
 
-            const getUsers = (e) => {
+            const getBuild = (e) => {
                 e.preventDefault();
                 getPOST(viewForm);
                 return false;
             }
 
-            buildForm.addEventListener('submit', addUser);
-            viewForm.addEventListener('submit', getUsers);
+            buildForm.addEventListener('submit', addBuild);
+            viewForm.addEventListener('submit', getBuild);
         };
 
         window.onload = init;
@@ -147,31 +254,8 @@
         <form id="buildForm" action="/addBuild" method="post">
             <label for="name">Your Name: </label>
             <input id="nameField" type="text" name="name" />
-            <label for="blaster">Blaster: </label>
-            <select id='blasterType' name="blaster">
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-            </select>
-            <label for="barrel">Barrel: </label>
-            <select id='barrelType' name="barrel">
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-            </select>
-            <label for="spring">Spring: </label>
-            <select id='springType' name="spring">
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-            </select>
-            <label for="additional">Additional: </label>
-            <select id='additionalType' name="additional">
-                <option value='1'>1</option>
-                <option value='2'>2</option>
-            </select>
-            <label for="fps">FPS Average: </label>
-            <input id="fpsField" type="number" name="fps" step="1" />
-            <label for="price">Price (USD): </label>
-            <input id="priceField" type="number" name="price" />
-            <input type="submit" value="Add Blaster" />
+            <div id = "details"></div>
+
         </form>
         <form id="viewForm" action="/getBuild" method="get">
             <select id='urlField'>
