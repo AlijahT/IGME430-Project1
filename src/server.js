@@ -38,12 +38,12 @@ const GETHandler = (request, response, parsedURL) => {
     htmlHandler.getCSS(request, response);
   } else if (parsedURL.pathname === '/getBuild') {
     jsonHandler.getBuild(request, response);
-  } else if (parsedURL.pathname === '/notReal') {
-    jsonHandler.notReal(request, response);
+  } else if (parsedURL.pathname === '/') {
+    htmlHandler.getIndex(request, response);
   } else if (parsedURL.pathname === '/blasters.json') {
     htmlHandler.getBlaster(request, response);
   } else {
-    htmlHandler.getIndex(request, response);
+    jsonHandler.notReal(request, response);
   }
 };
 
