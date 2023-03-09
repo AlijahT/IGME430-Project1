@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Springer Builder</title>
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 
 </head>
 
@@ -20,13 +21,13 @@
 
             switch (response.status) {
                 case 200:
-                    content.innerHTML = '<b>Success</b>';
+                    content.innerHTML = '<b>Here are the Current Builds:</b>';
                     break;
                 case 201:
-                    content.innerHTML = `<b>Created</b>`;
+                    content.innerHTML = `<b>Your Build has been Saved</b>`;
                     break;
                 case 204:
-                    content.innerHTML = `<b>Updated</b>`;
+                    content.innerHTML = `<b>Your Build has been Updated</b>`;
                     break;
                 case 400:
                     content.innerHTML = `<b>Bad Request</b>`;
@@ -67,13 +68,27 @@
                         //console.log(parsedResponse);
 
                         if (urlField.value == "/getBuild") {
-                            parsedBuild.forEach((person)=> {
-                                content.innerHTML += `<p>${person.name}</p>`
-                                content.innerHTML += `<p>${person.blaster}</p>`
-                                content.innerHTML += `<p>${person.spring}</p>`
-                            })
+                            const values = Object.values(JSON.parse(parsedBuild));
+                            //console.log(values);
+                            let string = ""
+                            string += `<br> <br> <div class = "columns is-3 has-text-light">`;
+                            for(let i = 0; i < values.length; i++){
+                               
+                                string += `<div class = "column has-background-dark">`;
+                                string+= `<div class = "box">`
+                                string += `User: ${values[i].name}<br>`
+                                string += `Blaster: ${values[i].blaster}<br>`
+                                string += `Barrel: ${values[i].barrel}<br>`
+                                string += `Spring: ${values[i].spring}<br>`
+                                string += `Additional: ${values[i].additional}<br>`
+                                string += `FPS: ${values[i].fps}<br>`
+                                string += `Price: ${values[i].price} USD`
+                                string += `</div></div>`;
+                            }
 
-                            content.innerHTML += `<p>${parsedBuild}</p>`;
+                            string += `</div>`;
+
+                            content.innerHTML += string;
                         }
                         else if (urlField.value == "/notReal") {
                             content.innerHTML += `<p>${parsedResponse.message}</p>`;
@@ -95,7 +110,9 @@
             const fpsField = buildForm.querySelector('#fpsField');
             const priceField = buildForm.querySelector('#priceField');
 
-            const formData = `name=${nameField.value}&blaster=${blasterType.value}&barrel=${barrelType.value}&spring=${springType.value}&additional=${additionalType.value}&fps=${fpsField.value}&price=${priceField.value}`;
+            let formData = `name=${nameField.value}&blaster=${blasterType.value}&fps=${fpsField.value}`;
+            formData += `&barrel=${barrelType.value}&spring=${springType.value}`;
+            formData += `&additional=${additionalType.value}&price=${priceField.value}`;
 
             let response = await fetch(nameAction, {
                 method: nameMethod,
@@ -128,7 +145,8 @@
             let selected
             let string =
                 `<label for="blaster">Blaster: </label>
-                <select id='blasterType' name="blaster" onchange="handleOnChange(this.value)">`;
+                <select id='blasterType' name="blaster" onchange="handleOnChange(this.value)">
+                <option value="None"}">None</option>;`;
 
             for (let i = 0; i < JSONobject.blasters.length; i++) {
                 string +=
@@ -144,65 +162,71 @@
 
         function handleOnChange(value) {
 
-            document.querySelector
+            let form = document.querySelector("#details");
 
             console.log("Blaster Changed!");
 
-            let index = 0;
-
-            if(value === "Talon Claw T4"){
-                index = 0;
+            if (value === "None"){
+                form.innerHTML = "";
             }
+           
+            if (value != "None") {
 
-            if(value === "Nexus Pro"){
-                index = 1;
-            }
+                let index = 0;
 
-            if(value === "Harrier"){
-                index = 2;
-            }
+                if (value === "Talon Claw T4") {
+                    index = 0;
+                }
 
-            let string = `
-            <label for="barrel">Barrel: </label>
-            <select id='barrelType' name="barrel">`
+                if (value === "Nexus Pro") {
+                    index = 1;
+                }
 
-            for (let i = 0; i < JSONobject.blasters[index].barrels.length; i++) {
-                string +=
-                    `<option value="${JSONobject.blasters[index].barrels[i].barrelname}">
+                if (value === "Harrier") {
+                    index = 2;
+                }
+
+                let string = `
+                <label for="barrel">Barrel: </label>
+                <select id='barrelType' name="barrel">`
+
+                for (let i = 0; i < JSONobject.blasters[index].barrels.length; i++) {
+                    string +=
+                        `<option value="${JSONobject.blasters[index].barrels[i].barrelname}">
                     ${JSONobject.blasters[index].barrels[i].barrelname}</option>`;
-            }
+                }
 
-            string += `</select> <br>`
+                string += `</select> <br>`
 
-            string += `<label for="spring">Spring: </label>
-            <select id='springType' name="spring">`
+                string += `<label for="spring">Spring: </label>
+                <select id='springType' name="spring">`
 
-            for (let i = 0; i < JSONobject.blasters[index].springs.length; i++) {
-                string +=
-                    `<option value="${JSONobject.blasters[index].springs[i].springname}">
+                for (let i = 0; i < JSONobject.blasters[index].springs.length; i++) {
+                    string +=
+                        `<option value="${JSONobject.blasters[index].springs[i].springname}">
                     ${JSONobject.blasters[index].springs[i].springname}</option>`;
-            }
+                }
 
-            string += `</select> <br>`
+                string += `</select> <br>`
 
-            string += `<label for="additional">Additional: </label>
-            <select id='additionalType' name="additional">`
+                string += `<label for="additional">Additional: </label>
+                <select id='additionalType' name="additional">`
 
-            for (let i = 0; i < JSONobject.blasters[index].additional.length; i++) {
-                string +=
-                    `<option value="${JSONobject.blasters[index].additional[i].additionalname}">
+                for (let i = 0; i < JSONobject.blasters[index].additional.length; i++) {
+                    string +=
+                        `<option value="${JSONobject.blasters[index].additional[i].additionalname}">
                     ${JSONobject.blasters[index].additional[i].additionalname}</option>`;
+                }
+
+                string += `</select> <br>
+                <label for="fps">FPS Average: </label>
+                <input id="fpsField" type="number" min = "0" name="fps" />
+                <label for="price">Price (USD): </label>
+                <input id="priceField" type="number" min = "0" name="price" />
+                <input type="submit" value="Add Blaster" />`
+
+                form.innerHTML = string;
             }
-
-            string += `</select> <br>
-            <label for="fps">FPS Average: </label>
-            <input id="fpsField" type="number" min = "0" name="fps" />
-            <label for="price">Price (USD): </label>
-            <input id="priceField" type="number" min = "0" name="price" />
-            <input type="submit" value="Add Blaster" />`
-
-            let form = document.querySelector("#details");
-            form.innerHTML = string;
         }
 
         const PopulateBlasterData = async () => {
@@ -254,7 +278,7 @@
         <form id="buildForm" action="/addBuild" method="post">
             <label for="name">Your Name: </label>
             <input id="nameField" type="text" name="name" />
-            <div id = "details"></div>
+            <div id="details"></div>
 
         </form>
         <form id="viewForm" action="/getBuild" method="get">
@@ -270,6 +294,7 @@
         </form>
     </section>
     <section id="content">
+        
     </section>
 
 </body>
