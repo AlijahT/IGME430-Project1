@@ -47,6 +47,7 @@ const addBuild = (request, response, body) => {
   // add fields for the build
   builds[body.name].name = body.name;
   builds[body.name].blaster = body.blaster;
+  builds[body.name].barrel = body.barrel;
   builds[body.name].spring = body.spring;
   builds[body.name].additional = body.additional;
   builds[body.name].fps = body.fps;
