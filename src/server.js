@@ -9,8 +9,8 @@ const port = process.env.PORT || process.env.NODE_PORT || 3000;
 const parseBody = (request, response, handler) => {
   const body = [];
 
-  request.on('error', (err) => {
-    console.dir(err);
+  request.on('error', () => {
+    //console.dir(err);
     response.statusCode = 400;
     response.end();
   });
@@ -58,5 +58,5 @@ const onRequest = (request, response) => {
 };
 
 http.createServer(onRequest).listen(port, () => {
-  console.log(`Listening on 127.0.0.1:${port}`);
+  //console.log(`Listening on 127.0.0.1:${port}`);
 });
