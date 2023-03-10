@@ -98,6 +98,7 @@
             }
         }
 
+        //this is in charge of sending a new build to the JSON object and is formatted here
         const sendPOST = async (buildForm) => {
             const nameAction = buildForm.getAttribute('action');
             const nameMethod = buildForm.getAttribute('method');
@@ -140,6 +141,7 @@
             handleResponse(response, viewForm);
         };
 
+        //this function is used to set up the initial blasters dropdown menu HTML
         function htmlFormatting() {
 
             let selected
@@ -160,6 +162,7 @@
             return string;
         }
 
+        //this runs when youy change the blaster dropdown, formats the HTML
         function handleOnChange(value) {
 
             let form = document.querySelector("#details");
@@ -229,6 +232,7 @@
             }
         }
 
+        //this gets the Blasters.json file and returns it
         const PopulateBlasterData = async () => {
             const response = await fetch('/blasters.json');
             const dropdownData = await response.json();

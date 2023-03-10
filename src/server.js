@@ -6,6 +6,7 @@ const htmlHandler = require('./htmlResponses.js');
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
 
+//parses a new build
 const parseBody = (request, response, handler) => {
   const body = [];
 
@@ -27,12 +28,14 @@ const parseBody = (request, response, handler) => {
   });
 };
 
+//calls addbuild
 const POSTHandler = (request, response, parsedURL) => {
   if (parsedURL.pathname === '/addBuild') {
     parseBody(request, response, jsonHandler.addBuild);
   }
 };
 
+//handles GETs for each page
 const GETHandler = (request, response, parsedURL) => {
   if (parsedURL.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
